@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cclomiqxqspip"]
+
+[ext_resource type="Script" path="res://scenes/entities/Dream.gd" id="1_fygpi"]
+[ext_resource type="Texture2D" uid="uid://dvqsh7o8c510m" path="res://assets/sprites/dream.png" id="2_ti8gk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_30ac0"]
+radius = 18.0
+height = 62.0
+
+[node name="Dream" type="Node2D"]
+script = ExtResource("1_fygpi")
+
+[node name="Dream" type="Sprite2D" parent="."]
+texture = ExtResource("2_ti8gk")
+
+[node name="CollectArea" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 512
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+position = Vector2(-1, -14)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_30ac0")
+
+[node name="CollectTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true

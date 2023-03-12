@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn0mqnof7liax"]
+
+[ext_resource type="Script" path="res://util/Console.gd" id="1_37ssd"]
+
+[node name="Console" type="CanvasLayer"]
+script = ExtResource("1_37ssd")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+text = "Hello
+How is it going
+Its going well"

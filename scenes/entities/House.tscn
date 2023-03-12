@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://batg8qeg8rv8t"]
+
+[ext_resource type="Texture2D" uid="uid://rytrkoli8f3d" path="res://assets/sprites/house.png" id="1_8lwuu"]
+[ext_resource type="Script" path="res://scenes/entities/House.gd" id="1_v75i1"]
+[ext_resource type="Script" path="res://resources/houses/HouseResource.gd" id="2_bb5r2"]
+
+[sub_resource type="Resource" id="Resource_cnu26"]
+script = ExtResource("2_bb5r2")
+max_dreams = 1
+house_texture = ExtResource("1_8lwuu")
+house_size = 1
+
+[node name="House" type="Node2D"]
+script = ExtResource("1_v75i1")
+house_data = SubResource("Resource_cnu26")
+
+[node name="House" type="Sprite2D" parent="."]
+texture = ExtResource("1_8lwuu")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DreamPositions" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="DreamPositions"]
+position = Vector2(-71, -37)
+
+[node name="Marker2D2" type="Marker2D" parent="DreamPositions"]
+position = Vector2(-1, -87)
+
+[node name="Marker2D3" type="Marker2D" parent="DreamPositions"]
+position = Vector2(68, -39)
