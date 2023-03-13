@@ -72,5 +72,5 @@ func wake_up() -> void:
 
 
 func _on_successful_attack() -> void:
-	EventBus.emit_signal("dreams_stolen")
+	EventBus.dreams_stolen.emit()
 	queue_free()

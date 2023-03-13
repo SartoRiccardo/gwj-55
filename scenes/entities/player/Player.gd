@@ -124,9 +124,9 @@ func _cast_night_spell() -> void:
 func _go_invisible() -> void:
 	$Invisibility.start(current_power.effect_duration)
 	$AnimatedSprite2D.modulate.a = 0.2
-	EventBus.emit_signal("player_invisible")
+	EventBus.player_invisible.emit()
 
 
 func _go_visible() -> void:
 	$AnimatedSprite2D.modulate.a = 1.0
-	EventBus.emit_signal("player_visible")
+	EventBus.player_visible.emit()
