@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://cclomiqxqspip"]
+
+[ext_resource type="Script" path="res://nodes/entities/Dream.gd" id="1_1foxc"]
+[ext_resource type="Resource" uid="uid://daowdij1cobxj" path="res://resources/powers/Dash.tres" id="2_8xx12"]
+[ext_resource type="Resource" uid="uid://ddtwfnjy35y53" path="res://resources/powers/Explosion.tres" id="3_qqta3"]
+[ext_resource type="Resource" uid="uid://dre2n0rsqlp2p" path="res://resources/powers/Invisibility.tres" id="4_vtpcr"]
+[ext_resource type="Resource" uid="uid://baikj2emwmg6c" path="res://resources/powers/NightSpell.tres" id="5_mil12"]
+[ext_resource type="Resource" uid="uid://ca78kla48p03b" path="res://resources/powers/Spore.tres" id="6_pnaso"]
+[ext_resource type="Texture2D" uid="uid://dvqsh7o8c510m" path="res://assets/sprites/dream.png" id="7_adfct"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_30ac0"]
+radius = 18.0
+height = 62.0
+
+[node name="Dream" type="Node2D"]
+script = ExtResource("1_1foxc")
+powers = Array[Resource("res://resources/powers/PowerResource.gd")]([ExtResource("2_8xx12"), ExtResource("3_qqta3"), ExtResource("4_vtpcr"), ExtResource("5_mil12"), ExtResource("6_pnaso")])
+
+[node name="Dream" type="Sprite2D" parent="."]
+texture = ExtResource("7_adfct")
+
+[node name="CollectArea" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 512
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+position = Vector2(-1, -14)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_30ac0")
+
+[node name="CollectTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -27.0
+offset_top = -27.0
+offset_right = 32.0
+offset_bottom = -1.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "s"

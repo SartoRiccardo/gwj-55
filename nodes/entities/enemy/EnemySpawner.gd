@@ -2,7 +2,7 @@ extends Node2D
 class_name EnemySpawner
 
 
-const ENEMY_SCENE := preload("res://scenes/entities/enemy/Enemy.tscn")
+const ENEMY_SCENE := preload("res://nodes/entities/enemy/Enemy.tscn")
 
 
 func spawn_enemy() -> void:

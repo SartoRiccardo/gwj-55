@@ -8,8 +8,8 @@ enum State { CONTROLLABLE, EAT, STAGGER, DASH, CHARGE, NO_CHANGE }
 const MAX_SPEED := 400.0
 const STAGGER_SPEED := 700.0
 const ACCELERATION := MAX_SPEED*7
-const SCENE_EXPOLOSION := preload("res://scenes/powers/Explosion.tscn")
-const SCENE_SPORE := preload("res://scenes/powers/Spore.tscn")
+const SCENE_EXPOLOSION := preload("res://nodes/powers/Explosion.tscn")
+const SCENE_SPORE := preload("res://nodes/powers/Spore.tscn")
 
 var inputs : Array[String]= []
 var direction := Vector2.ZERO

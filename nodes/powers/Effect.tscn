@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpuysnvnovcvm"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://scenes/powers/Effect.gd" id="1_26bsd"]
+[ext_resource type="Script" path="res://nodes/powers/Effect.gd" id="1_26bsd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ypu66"]
 radius = 107.019

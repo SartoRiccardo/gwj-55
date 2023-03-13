@@ -1,14 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://batg8qeg8rv8t"]
+[gd_scene load_steps=7 format=3 uid="uid://cxquyaesa6qm0"]
 
-[ext_resource type="Texture2D" uid="uid://rytrkoli8f3d" path="res://assets/sprites/house.png" id="1_8lwuu"]
-[ext_resource type="Script" path="res://scenes/entities/House.gd" id="1_v75i1"]
-[ext_resource type="Script" path="res://resources/houses/HouseResource.gd" id="2_bb5r2"]
+[ext_resource type="Script" path="res://nodes/entities/House.gd" id="1_pkdr5"]
+[ext_resource type="Script" path="res://resources/houses/HouseResource.gd" id="2_b4twl"]
+[ext_resource type="Texture2D" uid="uid://rytrkoli8f3d" path="res://assets/sprites/house.png" id="3_5unfj"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hdpfw"]
 load_path = "res://.godot/imported/house.png-0ab89cb2fa70a26cff8a1e0084fe0f23.ctex"
 
 [sub_resource type="Resource" id="Resource_caxgl"]
-script = ExtResource("2_bb5r2")
+script = ExtResource("2_b4twl")
 max_dreams = 3
 house_texture = SubResource("CompressedTexture2D_hdpfw")
 house_size = 1
@@ -17,11 +17,11 @@ house_size = 1
 size = Vector2(59, 61)
 
 [node name="House" type="Node2D"]
-script = ExtResource("1_v75i1")
+script = ExtResource("1_pkdr5")
 house_data = SubResource("Resource_caxgl")
 
 [node name="House" type="Sprite2D" parent="."]
-texture = ExtResource("1_8lwuu")
+texture = ExtResource("3_5unfj")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true

@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://e6peu5ndop3e"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="Script" path="res://scenes/entities/enemy/EnemySpawner.gd" id="1_5gjcr"]
+[ext_resource type="Script" path="res://nodes/entities/enemy/EnemySpawner.gd" id="1_5gjcr"]
 [ext_resource type="Texture2D" uid="uid://ctijtutpusd3w" path="res://assets/sprites/nightmare.png" id="2_ohc41"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iwybb"]

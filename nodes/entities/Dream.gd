@@ -7,7 +7,7 @@ signal eaten(dream)
 @export var powers : Array[PowerResource]
 
 const SPAWN_ENEMY_CHANCE := 0.35
-const ENEMY_SPAWNER := preload("res://scenes/entities/enemy/EnemySpawner.tscn")
+const ENEMY_SPAWNER := preload("res://nodes/entities/enemy/EnemySpawner.tscn")
 const POWER_SPAWN_CHANCE := 0.5
 
 var power : PowerResource = null

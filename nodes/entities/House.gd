@@ -5,7 +5,7 @@ extends Node2D
 
 const MIN_SPAWN_DELAY : float = 3.0
 const MAX_SPAWN_DELAY : float = 5.5
-const DREAM_SCENE : PackedScene = preload("res://scenes/entities/Dream.tscn")
+const DREAM_SCENE : PackedScene = preload("res://nodes/entities/Dream.tscn")
 
 var rng : RandomNumberGenerator
 var dreams : Array[Dream]

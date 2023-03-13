@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bf11effo1qthr"]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Texture2D" uid="uid://b5xucrt42jrs2" path="res://assets/sprites/explosion.png" id="1_e5c63"]
-[ext_resource type="Script" path="res://scenes/powers/Explosion.gd" id="1_g8bof"]
-[ext_resource type="PackedScene" uid="uid://dpuysnvnovcvm" path="res://scenes/powers/Effect.tscn" id="1_vtlqg"]
+[ext_resource type="Script" path="res://nodes/powers/Explosion.gd" id="1_g8bof"]
+[ext_resource type="PackedScene" path="res://nodes/powers/Effect.tscn" id="1_vtlqg"]
 [ext_resource type="Resource" uid="uid://ddtwfnjy35y53" path="res://resources/powers/Explosion.tres" id="3_6x8f8"]
 
 [node name="Effect" instance=ExtResource("1_vtlqg")]

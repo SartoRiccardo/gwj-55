@@ -1,59 +1,59 @@
-[gd_scene load_steps=27 format=3 uid="uid://dhrc0fw56vbnd"]
+[gd_scene load_steps=27 format=3 uid="uid://c0rvcovxy64v4"]
 
-[ext_resource type="Texture2D" uid="uid://c76xr2qkinylh" path="res://assets/sprites/baku.png" id="1_i02ye"]
-[ext_resource type="Script" path="res://scenes/entities/player/Player.gd" id="1_jtmh2"]
-[ext_resource type="Script" path="res://scenes/entities/player/Controllable.gd" id="3_gr4hv"]
-[ext_resource type="Script" path="res://scenes/entities/player/Eating.gd" id="4_wf73h"]
-[ext_resource type="Script" path="res://scenes/entities/player/Stagger.gd" id="5_xtnfx"]
-[ext_resource type="Script" path="res://scenes/entities/player/Dashing.gd" id="6_u6sla"]
-[ext_resource type="Script" path="res://scenes/entities/player/Charging.gd" id="7_1takf"]
+[ext_resource type="Script" path="res://nodes/entities/player/Player.gd" id="1_vvsiv"]
+[ext_resource type="Texture2D" uid="uid://c76xr2qkinylh" path="res://assets/sprites/baku.png" id="2_u2u3w"]
+[ext_resource type="Script" path="res://nodes/entities/player/Controllable.gd" id="3_dwas1"]
+[ext_resource type="Script" path="res://nodes/entities/player/Eating.gd" id="4_yktyq"]
+[ext_resource type="Script" path="res://nodes/entities/player/Stagger.gd" id="5_obsfg"]
+[ext_resource type="Script" path="res://nodes/entities/player/Dashing.gd" id="6_1qqmb"]
+[ext_resource type="Script" path="res://nodes/entities/player/Charging.gd" id="7_348bp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_us5kg"]
-atlas = ExtResource("1_i02ye")
+atlas = ExtResource("2_u2u3w")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l7nxj"]
-atlas = ExtResource("1_i02ye")
+atlas = ExtResource("2_u2u3w")
 region = Rect2(64, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yhwhv"]
-atlas = ExtResource("1_i02ye")
+atlas = ExtResource("2_u2u3w")
 region = Rect2(96, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xx28h"]
-atlas = ExtResource("1_i02ye")
+atlas = ExtResource("2_u2u3w")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jh0er"]
-atlas = ExtResource("1_i02ye")
+atlas = ExtResource("2_u2u3w")
 region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qmap0"]
-atlas = ExtResource("1_i02ye")
+atlas = ExtResource("2_u2u3w")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2xgh"]
-atlas = ExtResource("1_i02ye")
+atlas = ExtResource("2_u2u3w")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mc324"]
-atlas = ExtResource("1_i02ye")
+atlas = ExtResource("2_u2u3w")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rpts0"]
-atlas = ExtResource("1_i02ye")
+atlas = ExtResource("2_u2u3w")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qe320"]
-atlas = ExtResource("1_i02ye")
+atlas = ExtResource("2_u2u3w")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r5k7p"]
-atlas = ExtResource("1_i02ye")
+atlas = ExtResource("2_u2u3w")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_em1c4"]
-atlas = ExtResource("1_i02ye")
+atlas = ExtResource("2_u2u3w")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fntyt"]
@@ -236,7 +236,7 @@ _data = {
 }
 
 [node name="Player" type="Node2D" groups=["playable"]]
-script = ExtResource("1_jtmh2")
+script = ExtResource("1_vvsiv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fntyt")
@@ -273,22 +273,22 @@ shape = SubResource("CircleShape2D_wbg7d")
 [node name="States" type="Node" parent="."]
 
 [node name="Controllable" type="Node" parent="States"]
-script = ExtResource("3_gr4hv")
+script = ExtResource("3_dwas1")
 
 [node name="Eating" type="Node" parent="States"]
-script = ExtResource("4_wf73h")
+script = ExtResource("4_yktyq")
 
 [node name="Stagger" type="Node" parent="States"]
-script = ExtResource("5_xtnfx")
+script = ExtResource("5_obsfg")
 
 [node name="Dashing" type="Node" parent="States"]
-script = ExtResource("6_u6sla")
+script = ExtResource("6_1qqmb")
 
 [node name="Timer" type="Timer" parent="States/Dashing"]
 one_shot = true
 
 [node name="Charging" type="Node" parent="States"]
-script = ExtResource("7_1takf")
+script = ExtResource("7_348bp")
 
 [node name="Timer" type="Timer" parent="States/Charging"]
 one_shot = true

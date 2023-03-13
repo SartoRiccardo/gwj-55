@@ -1,13 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://drxfnjx7u7egh"]
+[gd_scene load_steps=9 format=3 uid="uid://dp77u0y7jlygp"]
 
-[ext_resource type="Texture2D" uid="uid://ctijtutpusd3w" path="res://assets/sprites/nightmare.png" id="1_13nkm"]
-[ext_resource type="Script" path="res://scenes/entities/enemy/Enemy.gd" id="1_f0a8t"]
-[ext_resource type="Script" path="res://scenes/entities/enemy/Chase.gd" id="3_leeaq"]
-[ext_resource type="Script" path="res://scenes/entities/enemy/Asleep.gd" id="4_fb6ey"]
-[ext_resource type="Script" path="res://scenes/entities/enemy/Wander.gd" id="5_am5ne"]
+[ext_resource type="Script" path="res://nodes/entities/enemy/Enemy.gd" id="1_qs5lu"]
+[ext_resource type="Texture2D" uid="uid://ctijtutpusd3w" path="res://assets/sprites/nightmare.png" id="2_trn7o"]
+[ext_resource type="Script" path="res://nodes/entities/enemy/Chase.gd" id="3_8823f"]
+[ext_resource type="Script" path="res://nodes/entities/enemy/Asleep.gd" id="4_xj7yd"]
+[ext_resource type="Script" path="res://nodes/entities/enemy/Wander.gd" id="5_yt0bg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q2bwy"]
-atlas = ExtResource("1_13nkm")
+atlas = ExtResource("2_trn7o")
 region = Rect2(0, 0, 32, 30)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xjcvt"]
@@ -17,7 +17,7 @@ radius = 13.0
 radius = 21.0
 
 [node name="Enemy" type="Node2D"]
-script = ExtResource("1_f0a8t")
+script = ExtResource("1_qs5lu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
@@ -43,15 +43,15 @@ shape = SubResource("CircleShape2D_xhg35")
 [node name="States" type="Node" parent="."]
 
 [node name="Chase" type="Node" parent="States"]
-script = ExtResource("3_leeaq")
+script = ExtResource("3_8823f")
 
 [node name="Asleep" type="Node" parent="States"]
-script = ExtResource("4_fb6ey")
+script = ExtResource("4_xj7yd")
 
 [node name="SleepTimer" type="Timer" parent="States/Asleep"]
 one_shot = true
 
 [node name="Wander" type="Node" parent="States"]
-script = ExtResource("5_am5ne")
+script = ExtResource("5_yt0bg")
 
 [node name="Timer" type="Timer" parent="States/Wander"]
