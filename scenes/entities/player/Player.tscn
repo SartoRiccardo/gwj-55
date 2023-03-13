@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dhrc0fw56vbnd"]
+[gd_scene load_steps=27 format=3 uid="uid://dhrc0fw56vbnd"]
 
 [ext_resource type="Texture2D" uid="uid://c76xr2qkinylh" path="res://assets/sprites/baku.png" id="1_i02ye"]
 [ext_resource type="Script" path="res://scenes/entities/player/Player.gd" id="1_jtmh2"]
@@ -150,6 +150,9 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_43oqc"]
+radius = 24.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_8bran"]
 radius = 11.0
 
@@ -240,6 +243,16 @@ sprite_frames = SubResource("SpriteFrames_fntyt")
 animation = &"charge_2"
 autoplay = "idle"
 
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 1024
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_43oqc")
+debug_color = Color(0.988235, 0, 0.313726, 0.419608)
+
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 256
 collision_mask = 256
@@ -271,10 +284,16 @@ script = ExtResource("5_xtnfx")
 [node name="Dashing" type="Node" parent="States"]
 script = ExtResource("6_u6sla")
 
+[node name="Timer" type="Timer" parent="States/Dashing"]
+one_shot = true
+
 [node name="Charging" type="Node" parent="States"]
 script = ExtResource("7_1takf")
 
 [node name="Timer" type="Timer" parent="States/Charging"]
+one_shot = true
+
+[node name="Invisibility" type="Timer" parent="."]
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

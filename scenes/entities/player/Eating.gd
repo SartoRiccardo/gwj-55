@@ -26,5 +26,7 @@ func update(delta : float) -> Player.State:
 
 
 func _eat_dream(_dream : Dream):
-	EventBus.emit_signal("dreams_earned")
+	EventBus.dreams_earned.emit()
+	if parent.current_dream.power:
+		parent.current_power = parent.current_dream.power
 	parent.current_dream.die()

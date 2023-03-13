@@ -4,13 +4,20 @@ class_name Dream
 
 signal eaten(dream)
 
+@export var powers : Array[PowerResource]
+
 const SPAWN_ENEMY_CHANCE := 0.35
 const ENEMY_SPAWNER := preload("res://scenes/entities/enemy/EnemySpawner.tscn")
+const POWER_SPAWN_CHANCE := 0.5
+
+var power : PowerResource = null
 
 
 func _ready():
+	_select_power()
+	
 	$CollectTimer.timeout.connect(func ():
-		emit_signal("eaten", self)
+		eaten.emit(self)
 	)
 
 
@@ -18,16 +25,27 @@ func _process(delta):
 	pass
 
 
-func start_eating():
+func _select_power() -> void:
+	if Utils.rng.randf() > POWER_SPAWN_CHANCE:
+		return
+	
+	var chances : Array[float] = []
+	for p in powers:
+		chances.push_front(p.spawn_chance)
+	power = Utils.rand_select(powers, chances)
+	$Label.text = power.name
+
+
+func start_eating() -> void:
 	$CollectTimer.start()
 
 
-func stop_eating():
+func stop_eating() -> void:
 	$CollectTimer.stop()
 
 
-func die():
-	if Utils.rng.randf() < SPAWN_ENEMY_CHANCE:
+func die(natural := true) -> void:
+	if Utils.rng.randf() < SPAWN_ENEMY_CHANCE and natural:
 		var enemy_root := get_tree().get_first_node_in_group("root_enemy")
 		if enemy_root == null:
 			enemy_root = get_parent()

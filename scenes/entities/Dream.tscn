@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://cclomiqxqspip"]
+[gd_scene load_steps=9 format=3 uid="uid://cclomiqxqspip"]
 
 [ext_resource type="Script" path="res://scenes/entities/Dream.gd" id="1_fygpi"]
+[ext_resource type="Resource" uid="uid://daowdij1cobxj" path="res://resources/powers/Dash.tres" id="2_aat18"]
 [ext_resource type="Texture2D" uid="uid://dvqsh7o8c510m" path="res://assets/sprites/dream.png" id="2_ti8gk"]
+[ext_resource type="Resource" uid="uid://ddtwfnjy35y53" path="res://resources/powers/Explosion.tres" id="3_mbmsk"]
+[ext_resource type="Resource" uid="uid://dre2n0rsqlp2p" path="res://resources/powers/Invisibility.tres" id="4_dx2p5"]
+[ext_resource type="Resource" uid="uid://baikj2emwmg6c" path="res://resources/powers/NightSpell.tres" id="5_d07ew"]
+[ext_resource type="Resource" uid="uid://ca78kla48p03b" path="res://resources/powers/Spore.tres" id="6_uaos0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_30ac0"]
 radius = 18.0
@@ -9,6 +14,7 @@ height = 62.0
 
 [node name="Dream" type="Node2D"]
 script = ExtResource("1_fygpi")
+powers = Array[Resource("res://resources/powers/PowerResource.gd")]([ExtResource("2_aat18"), ExtResource("3_mbmsk"), ExtResource("4_dx2p5"), ExtResource("5_d07ew"), ExtResource("6_uaos0")])
 
 [node name="Dream" type="Sprite2D" parent="."]
 texture = ExtResource("2_ti8gk")
@@ -26,3 +32,11 @@ shape = SubResource("CapsuleShape2D_30ac0")
 [node name="CollectTimer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -27.0
+offset_top = -27.0
+offset_right = 32.0
+offset_bottom = -1.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "s"

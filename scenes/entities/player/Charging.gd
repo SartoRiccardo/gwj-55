@@ -6,15 +6,19 @@ const CHARGE_STAGES := 3
 var stage := 0
 
 
+func init(parent_node : Player) -> void:
+	$Timer.timeout.connect(on_charge_stage_change)
+	super(parent_node)
+
+
 func enter() -> void:
 	stage = 0
 	parent.get_node("AnimatedSprite2D").play("charge_%s" % stage)
-	$Timer.timeout.connect(on_charge_stage_change)
 	$Timer.start(parent.current_power.charge_duration/3.0)
 
 
 func exit() -> void:
-	pass
+	$Timer.stop()
 
 
 func update(delta : float) -> Player.State:

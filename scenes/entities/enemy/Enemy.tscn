@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://drxfnjx7u7egh"]
+[gd_scene load_steps=9 format=3 uid="uid://drxfnjx7u7egh"]
 
 [ext_resource type="Texture2D" uid="uid://ctijtutpusd3w" path="res://assets/sprites/nightmare.png" id="1_13nkm"]
 [ext_resource type="Script" path="res://scenes/entities/enemy/Enemy.gd" id="1_f0a8t"]
+[ext_resource type="Script" path="res://scenes/entities/enemy/Chase.gd" id="3_leeaq"]
+[ext_resource type="Script" path="res://scenes/entities/enemy/Asleep.gd" id="4_fb6ey"]
+[ext_resource type="Script" path="res://scenes/entities/enemy/Wander.gd" id="5_am5ne"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q2bwy"]
 atlas = ExtResource("1_13nkm")
@@ -23,12 +26,32 @@ texture = SubResource("AtlasTexture_q2bwy")
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 256
 collision_mask = 256
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CircleShape2D_xjcvt")
 debug_color = Color(0.960784, 0, 0.521569, 0.419608)
 
 [node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 1024
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_xhg35")
+
+[node name="States" type="Node" parent="."]
+
+[node name="Chase" type="Node" parent="States"]
+script = ExtResource("3_leeaq")
+
+[node name="Asleep" type="Node" parent="States"]
+script = ExtResource("4_fb6ey")
+
+[node name="SleepTimer" type="Timer" parent="States/Asleep"]
+one_shot = true
+
+[node name="Wander" type="Node" parent="States"]
+script = ExtResource("5_am5ne")
+
+[node name="Timer" type="Timer" parent="States/Wander"]

@@ -62,10 +62,9 @@ action={
 
 [layer_names]
 
-2d_physics/layer_9="hurt"
+2d_physics/layer_9="hurt_player"
 2d_physics/layer_10="collect"
-2d_physics/layer_11="attack"
-2d_physics/layer_12="spore"
+2d_physics/layer_11="player_attack"
 
 [rendering]
 

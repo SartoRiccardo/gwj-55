@@ -7,3 +7,4 @@ script = ExtResource("1_fd5g0")
 name = "night_spell"
 charge_duration = 3.0
 effect_duration = 0.0
+spawn_chance = 0.1

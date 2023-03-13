@@ -10,6 +10,7 @@ func exit() -> void:
 
 
 func update(delta : float) -> Player.State:
+	parent.direction = parent.get_direction()
 	_update_velocity(delta)
 	_update_sprite()
 	

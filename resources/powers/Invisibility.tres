@@ -6,4 +6,4 @@
 script = ExtResource("1_cne7h")
 name = "invisibility"
 charge_duration = 0.5
-effect_duration = 5.0
+effect_duration = 7.0

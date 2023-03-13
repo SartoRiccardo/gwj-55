@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_wqg6p")
-name = "dash"
+name = "spore"
 charge_duration = 0.5
 effect_duration = 3.0
+spawn_chance = 0.15

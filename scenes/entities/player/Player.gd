@@ -8,18 +8,20 @@ enum State { CONTROLLABLE, EAT, STAGGER, DASH, CHARGE, NO_CHANGE }
 const MAX_SPEED := 400.0
 const STAGGER_SPEED := 700.0
 const ACCELERATION := MAX_SPEED*7
+const SCENE_EXPOLOSION := preload("res://scenes/powers/Explosion.tscn")
+const SCENE_SPORE := preload("res://scenes/powers/Spore.tscn")
 
 var inputs : Array[String]= []
 var direction := Vector2.ZERO
 var velocity := Vector2.ZERO
 var current_dream : Dream = null
-var current_power : PowerResource = preload("res://resources/powers/Explosion.tres")
+var current_power : PowerResource = null
 var power_callbacks := {
-	"explosion": _spawn_explosion,
+	"explosion": func(): _spawn_effect(SCENE_EXPOLOSION),
 	"dash": _start_dash,
 	"night_spell": _cast_night_spell,
 	"invisibility": _go_invisible,
-	"spore": _spawn_spores,
+	"spore": func(): _spawn_effect(SCENE_SPORE),
 }
 
 @onready var states := {
@@ -42,10 +44,12 @@ func _ready():
 			var new_state := current_state._on_hurt(a2d.get_parent())
 			_change_state(new_state)
 	)
+	$Invisibility.timeout.connect(_go_visible)
 
 
 func _process(delta):
-	direction = get_direction()
+	Console.writeln([current_power.name if current_power else "N/A", current_state.name])
+	check_inputs()
 	var new_state := current_state.update(delta)
 	_change_state(new_state)
 	
@@ -64,14 +68,16 @@ func _change_state(new_state : Player.State) -> void:
 	current_state = state_node
 
 
-func get_direction() -> Vector2:
+func check_inputs() -> void:
 	var events_to_check : Array[String] = ["go_left", "go_right", "go_down", "go_up"]
 	for event in events_to_check:
 		if Input.is_action_just_released(event) or Input.is_action_just_pressed(event):
 			inputs.erase(event)
 		if Input.is_action_just_pressed(event):
 			inputs.push_front(event)
-	
+
+
+func get_direction() -> Vector2:
 	var direction : Vector2 = Vector2.ZERO
 	for input in inputs:
 		if input == "go_left" and direction.x == 0:
@@ -98,21 +104,29 @@ func use_power() -> void:
 	current_power = null
 
 
-func _spawn_explosion() -> void:
-	pass
+func _spawn_effect(effect_scn : PackedScene) -> void:
+	var power_root := get_tree().get_first_node_in_group("root_power_fx")
+	if power_root == null:
+		power_root = get_parent()
+	var effect := effect_scn.instantiate()
+	effect.global_position = global_position
+	power_root.add_child(effect)
 
 
 func _start_dash() -> void:
 	_change_state(State.DASH)
 
 
-func _spawn_spores() -> void:
-	pass
-
-
 func _cast_night_spell() -> void:
-	pass
+	EventBus.extend_night.emit()
 
 
 func _go_invisible() -> void:
-	pass
+	$Invisibility.start(current_power.effect_duration)
+	$AnimatedSprite2D.modulate.a = 0.2
+	EventBus.emit_signal("player_invisible")
+
+
+func _go_visible() -> void:
+	$AnimatedSprite2D.modulate.a = 1.0
+	EventBus.emit_signal("player_visible")

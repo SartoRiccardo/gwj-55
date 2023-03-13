@@ -20,11 +20,32 @@ func _ready():
 		dreams.push_front(null)
 	rng = RandomNumberGenerator.new()
 	
-	$SpawnTimer.timeout.connect(func(): spawn_dream())
+	$HitBox.area_entered.connect(func(a2d : Area2D):
+		var parent = a2d.get_parent()
+		if parent is Explosion:
+			wake_up()
+		elif parent is Spore:
+			sleep_instantly.call_deferred()
+	)
+	$SpawnTimer.timeout.connect(spawn_dream)
 
 
 func _process(delta):
 	_start_dream_spawn()
+
+
+func wake_up() -> void:
+	for i in dreams.size():
+		if dreams[i]:
+			dreams[i].die(false)
+		dreams[i] = null
+	$SpawnTimer.start(rng.randf_range(MIN_SPAWN_DELAY, MAX_SPAWN_DELAY)*3)
+
+
+func sleep_instantly() -> void:
+	var empty_dream_spots := dreams.size() - dream_count()
+	for __ in empty_dream_spots:
+		spawn_dream()
 
 
 func dream_count() -> int:
@@ -34,7 +55,7 @@ func dream_count() -> int:
 	)
 
 
-func spawn_dream():
+func spawn_dream() -> void:
 	var root_dreams : Node = get_tree().get_first_node_in_group("root_dreams")
 	if root_dreams == null:
 		root_dreams = get_parent()
@@ -50,7 +71,7 @@ func spawn_dream():
 	root_dreams.add_child(new_dream)
 
 
-func _start_dream_spawn():
+func _start_dream_spawn() -> void:
 	if dream_count() < house_data.max_dreams and $SpawnTimer.is_stopped():
 		$SpawnTimer.start(rng.randf_range(MIN_SPAWN_DELAY, MAX_SPAWN_DELAY))
 

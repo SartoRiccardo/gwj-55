@@ -7,3 +7,4 @@ script = ExtResource("1_ibkok")
 name = "explosion"
 charge_duration = 0.5
 effect_duration = 0.5
+spawn_chance = 0.4

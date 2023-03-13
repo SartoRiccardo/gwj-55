@@ -6,4 +6,5 @@
 script = ExtResource("1_0nual")
 name = "dash"
 charge_duration = 0.0
-effect_duration = 1.0
+effect_duration = 0.3
+spawn_chance = 0.15
