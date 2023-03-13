@@ -1,4 +1,4 @@
-extends BaseState
+extends "Hurtable.gd"
 
 
 func enter() -> void:
@@ -9,7 +9,7 @@ func exit() -> void:
 	pass
 
 
-func update(delta : float) -> String:
+func update(delta : float) -> Player.State:
 	_update_velocity(delta)
 	_update_sprite()
 	
@@ -18,15 +18,22 @@ func update(delta : float) -> String:
 		if dream_areas.size() > 0:
 			var dream : Dream = dream_areas[0].get_parent()
 			parent.current_dream = dream
-			return "eating"
+			return Player.State.EAT
 	
-	return NO_CHANGE
+	if Input.is_action_pressed("action") and parent.current_power:
+		if parent.current_power.charge_duration > 0:
+			return Player.State.CHARGE
+		else:
+			parent.use_power()
+	
+	return Player.State.NO_CHANGE
+
 
 func _update_velocity(delta : float) -> void:
 	if parent.direction == Vector2.ZERO:
 		parent.velocity = (Vector2.ZERO).lerp(parent.velocity, pow(2, -15*delta))
 	else:
-		var target_velocity : Vector2 = (parent.direction * parent.MAX_SPEED).limit_length(parent.MAX_SPEED)
+		var target_velocity := parent.direction.normalized() * parent.MAX_SPEED
 		parent.velocity = parent.velocity.move_toward(target_velocity, delta*parent.ACCELERATION)
 
 

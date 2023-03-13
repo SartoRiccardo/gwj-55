@@ -1,4 +1,4 @@
-extends BaseState
+extends "Hurtable.gd"
 
 
 func enter() -> void:
@@ -16,14 +16,15 @@ func exit() -> void:
 	parent.current_dream = null
 
 
-func update(delta : float) -> String:
+func update(delta : float) -> Player.State:
 	parent.velocity = (Vector2.ZERO).lerp(parent.velocity, pow(2, -20*delta))
 	
 	if not Input.is_action_pressed("eat") or parent.current_dream == null:
-		return "controllable"
+		return Player.State.CONTROLLABLE
 	
-	return NO_CHANGE
+	return Player.State.NO_CHANGE
 
 
 func _eat_dream(_dream : Dream):
+	EventBus.emit_signal("dreams_earned")
 	parent.current_dream.die()

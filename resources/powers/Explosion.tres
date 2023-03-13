@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PowerResource" load_steps=2 format=3 uid="uid://ddtwfnjy35y53"]
+
+[ext_resource type="Script" path="res://resources/powers/PowerResource.gd" id="1_ibkok"]
+
+[resource]
+script = ExtResource("1_ibkok")
+name = "explosion"
+charge_duration = 0.5
+effect_duration = 0.5

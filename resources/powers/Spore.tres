@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PowerResource" load_steps=2 format=3 uid="uid://ca78kla48p03b"]
+
+[ext_resource type="Script" path="res://resources/powers/PowerResource.gd" id="1_wqg6p"]
+
+[resource]
+script = ExtResource("1_wqg6p")
+name = "dash"
+charge_duration = 0.5
+effect_duration = 3.0

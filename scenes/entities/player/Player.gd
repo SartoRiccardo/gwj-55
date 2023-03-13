@@ -1,37 +1,58 @@
 extends Node2D
 class_name Player
 
+@export var invulnerable := false
 
-const MAX_SPEED : float = 400
-const ACCELERATION : float = MAX_SPEED*7
+enum State { CONTROLLABLE, EAT, STAGGER, DASH, CHARGE, NO_CHANGE }
+
+const MAX_SPEED := 400.0
+const STAGGER_SPEED := 700.0
+const ACCELERATION := MAX_SPEED*7
 
 var inputs : Array[String]= []
-var direction : Vector2 = Vector2.ZERO
-var velocity : Vector2 = Vector2.ZERO
+var direction := Vector2.ZERO
+var velocity := Vector2.ZERO
 var current_dream : Dream = null
-
-@onready var states : Dictionary = {
-	"controllable": $States/Controllable,
-	"eating": $States/Eating,
+var current_power : PowerResource = preload("res://resources/powers/Explosion.tres")
+var power_callbacks := {
+	"explosion": _spawn_explosion,
+	"dash": _start_dash,
+	"night_spell": _cast_night_spell,
+	"invisibility": _go_invisible,
+	"spore": _spawn_spores,
 }
-@onready var current_state : BaseState = states["controllable"]
+
+@onready var states := {
+	State.CONTROLLABLE: $States/Controllable,
+	State.EAT: $States/Eating,
+	State.STAGGER: $States/Stagger,
+	State.DASH: $States/Dashing,
+	State.CHARGE: $States/Charging,
+}
+@onready var current_state : BaseState = states[State.CONTROLLABLE]
 
 
 func _ready():
 	for state in $States.get_children():
 		state.init(self)
 	current_state.enter()
+	
+	$HurtBox.area_entered.connect(func (a2d : Area2D):
+		if a2d.get_parent() is Enemy:
+			var new_state := current_state._on_hurt(a2d.get_parent())
+			_change_state(new_state)
+	)
 
 
 func _process(delta):
 	direction = get_direction()
-	var new_state : String = current_state.update(delta)
+	var new_state := current_state.update(delta)
 	_change_state(new_state)
 	
 	global_position += velocity * delta
 
 
-func _change_state(new_state : String) -> void:
+func _change_state(new_state : Player.State) -> void:
 	if new_state not in states.keys():
 		return
 	
@@ -64,3 +85,34 @@ func get_direction() -> Vector2:
 			direction += Vector2.DOWN
 	
 	return direction
+
+
+func stop_stagger() -> void:
+	_change_state(State.CONTROLLABLE)
+
+
+func use_power() -> void:
+	if current_power == null or not (current_power.name in power_callbacks.keys()):
+		return
+	power_callbacks[current_power.name].call()
+	current_power = null
+
+
+func _spawn_explosion() -> void:
+	pass
+
+
+func _start_dash() -> void:
+	_change_state(State.DASH)
+
+
+func _spawn_spores() -> void:
+	pass
+
+
+func _cast_night_spell() -> void:
+	pass
+
+
+func _go_invisible() -> void:
+	pass

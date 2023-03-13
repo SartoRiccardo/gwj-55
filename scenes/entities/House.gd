@@ -25,7 +25,6 @@ func _ready():
 
 func _process(delta):
 	_start_dream_spawn()
-	Console.writeln([$SpawnTimer.time_left, dreams])
 
 
 func dream_count() -> int:

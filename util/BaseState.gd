@@ -2,8 +2,6 @@ extends Node
 class_name BaseState
 
 
-const NO_CHANGE : String = "_no_change"
-
 var parent : Player = null
 
 
@@ -19,5 +17,9 @@ func exit() -> void:
 	pass
 
 
-func update(_delta : float) -> String:
-	return NO_CHANGE
+func update(_delta : float) -> Player.State:
+	return Player.State.NO_CHANGE
+
+
+func _on_hurt(enemy : Enemy) -> Player.State:
+	return Player.State.NO_CHANGE
