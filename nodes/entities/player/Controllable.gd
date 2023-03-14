@@ -48,13 +48,13 @@ func _update_sprite() -> void:
 			sprite.play("go_left")
 		Vector2.UP:
 			sprite.play("go_up")
-		Vector2.UP+Vector2.LEFT, \
-		Vector2.UP+Vector2.RIGHT:
+		Vector2(cos(PI+PI/6), sin(PI+PI/6)), \
+		Vector2(cos(-PI/6), sin(-PI/6)):
 			sprite.play("go_up_left")
 		Vector2.DOWN:
 			sprite.play("go_down")
-		Vector2.DOWN+Vector2.LEFT, \
-		Vector2.DOWN+Vector2.RIGHT:
+		Vector2(cos(PI/6), sin(PI/6)), \
+		Vector2(cos(PI-PI/6), sin(PI-PI/6)):
 			sprite.play("go_down_left")
 	
 	if parent.direction != Vector2.ZERO:

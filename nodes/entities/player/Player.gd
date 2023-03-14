@@ -90,7 +90,20 @@ func get_direction() -> Vector2:
 		elif input == "go_down" and direction.y == 0:
 			direction += Vector2.DOWN
 	
-	return direction
+	var angle := 0.0
+	match direction:
+		Vector2.DOWN+Vector2.LEFT:
+			angle = PI-PI/6
+		Vector2.DOWN+Vector2.RIGHT:
+			angle = PI/6
+		Vector2.UP+Vector2.LEFT:
+			angle = PI+PI/6
+		Vector2.UP+Vector2.RIGHT:
+			angle = -PI/6
+	if angle:
+		direction = Vector2(cos(angle), sin(angle))
+	
+	return direction.normalized()
 
 
 func stop_stagger() -> void:
