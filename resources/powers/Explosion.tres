@@ -8,3 +8,5 @@ name = "explosion"
 charge_duration = 0.5
 effect_duration = 0.5
 spawn_chance = 0.4
+full_name = "Explode"
+power_description = "Creates a big explosion, destroying enemies but waking up people"

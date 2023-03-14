@@ -3,7 +3,7 @@ class_name Player
 
 @export var invulnerable := false
 
-enum State { CONTROLLABLE, EAT, STAGGER, DASH, CHARGE, NO_CHANGE }
+enum State { CONTROLLABLE, EAT, STAGGER, DASH, CHARGE, NO_CHANGE, END }
 
 const MAX_SPEED := 400.0
 const STAGGER_SPEED := 700.0
@@ -30,6 +30,7 @@ var power_callbacks := {
 	State.STAGGER: $States/Stagger,
 	State.DASH: $States/Dashing,
 	State.CHARGE: $States/Charging,
+	State.END: $States/End,
 }
 @onready var current_state : BaseState = states[State.CONTROLLABLE]
 
@@ -45,10 +46,10 @@ func _ready():
 			_change_state(new_state)
 	)
 	$Invisibility.timeout.connect(_go_visible)
+	EventBus.game_finished.connect(_on_game_finished)
 
 
 func _process(delta):
-	Console.writeln([current_power.name if current_power else "N/A", current_state.name])
 	check_inputs()
 	var new_state := current_state.update(delta)
 	_change_state(new_state)
@@ -115,6 +116,7 @@ func use_power() -> void:
 		return
 	power_callbacks[current_power.name].call()
 	current_power = null
+	EventBus.lose_power.emit()
 
 
 func _spawn_effect(effect_scn : PackedScene) -> void:
@@ -143,3 +145,7 @@ func _go_invisible() -> void:
 func _go_visible() -> void:
 	$AnimatedSprite2D.modulate.a = 1.0
 	EventBus.player_visible.emit()
+
+
+func _on_game_finished() -> void:
+	$States/Controllable.end = true

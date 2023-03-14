@@ -1,6 +1,9 @@
 extends "Hurtable.gd"
 
 
+var end := false
+
+
 func enter() -> void:
 	pass
 
@@ -10,6 +13,9 @@ func exit() -> void:
 
 
 func update(delta : float) -> Player.State:
+	if end:
+		return Player.State.END
+	
 	parent.direction = parent.get_direction()
 	_update_velocity(delta)
 	_update_sprite()

@@ -7,3 +7,6 @@ script = ExtResource("1_cne7h")
 name = "invisibility"
 charge_duration = 0.5
 effect_duration = 7.0
+spawn_chance = 0.2
+full_name = "Invisibility"
+power_description = "Go undetected for a few seconds, but enemies can still hit you!"

@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://drbu3xe1h30he"]
+
+[ext_resource type="Script" path="res://nodes/ui/GameUI.gd" id="1_53dua"]
+
+[node name="GameUI" type="CanvasLayer"]
+script = ExtResource("1_53dua")
+
+[node name="Margin1" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 100
+
+[node name="VBox1" type="VBoxContainer" parent="Margin1"]
+layout_mode = 2
+
+[node name="HBox1" type="HBoxContainer" parent="Margin1/VBox1"]
+layout_mode = 2
+
+[node name="VBox1" type="VBoxContainer" parent="Margin1/VBox1/HBox1"]
+layout_mode = 2
+
+[node name="HBox1" type="HBoxContainer" parent="Margin1/VBox1/HBox1/VBox1"]
+layout_mode = 2
+
+[node name="Points" type="Label" parent="Margin1/VBox1/HBox1/VBox1/HBox1"]
+layout_mode = 2
+text = "0"
+
+[node name="HBox2" type="HBoxContainer" parent="Margin1/VBox1/HBox1/VBox1"]
+layout_mode = 2
+
+[node name="TimeLeft" type="Label" parent="Margin1/VBox1/HBox1/VBox1/HBox2"]
+layout_mode = 2
+text = "3:00"
+
+[node name="Button" type="Button" parent="Margin1/VBox1/HBox1"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+text = "Pause"
+
+[node name="HBox2" type="HBoxContainer" parent="Margin1/VBox1"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Power" type="Label" parent="Margin1/VBox1/HBox2"]
+layout_mode = 2

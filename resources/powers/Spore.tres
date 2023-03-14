@@ -8,3 +8,5 @@ name = "spore"
 charge_duration = 0.5
 effect_duration = 3.0
 spawn_chance = 0.15
+full_name = "Spore"
+power_description = "Puts nearby enemies and people immediately to sleep."

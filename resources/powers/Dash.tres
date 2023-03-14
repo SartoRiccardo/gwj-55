@@ -8,3 +8,5 @@ name = "dash"
 charge_duration = 0.0
 effect_duration = 0.3
 spawn_chance = 0.15
+full_name = "Dash"
+power_description = "Dashes incredibly fast, destroying enemies it hits"

@@ -8,3 +8,5 @@ name = "night_spell"
 charge_duration = 3.0
 effect_duration = 0.0
 spawn_chance = 0.1
+full_name = "Extend Night"
+power_description = "Extend the duration of the night, allowing you to eat more dreams"
