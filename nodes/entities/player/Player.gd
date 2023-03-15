@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 class_name Player
 
 @export var invulnerable := false
@@ -13,7 +13,7 @@ const SCENE_SPORE := preload("res://nodes/powers/Spore.tscn")
 
 var inputs : Array[String]= []
 var direction := Vector2.ZERO
-var velocity := Vector2.ZERO
+#var velocity := Vector2.ZERO
 var current_dream : Dream = null
 var current_power : PowerResource = null
 var power_callbacks := {
@@ -54,7 +54,8 @@ func _process(delta):
 	var new_state := current_state.update(delta)
 	_change_state(new_state)
 	
-	global_position += velocity * delta
+	move_and_slide()
+#	global_position += velocity * delta
 
 
 func _change_state(new_state : Player.State) -> void:
