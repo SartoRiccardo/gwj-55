@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cclomiqxqspip"]
+[gd_scene load_steps=21 format=3 uid="uid://wsxj1g55erv0"]
 
 [ext_resource type="Script" path="res://nodes/entities/Dream.gd" id="1_1foxc"]
 [ext_resource type="Resource" uid="uid://daowdij1cobxj" path="res://resources/powers/Dash.tres" id="2_8xx12"]
@@ -6,18 +6,233 @@
 [ext_resource type="Resource" uid="uid://dre2n0rsqlp2p" path="res://resources/powers/Invisibility.tres" id="4_vtpcr"]
 [ext_resource type="Resource" uid="uid://baikj2emwmg6c" path="res://resources/powers/NightSpell.tres" id="5_mil12"]
 [ext_resource type="Resource" uid="uid://ca78kla48p03b" path="res://resources/powers/Spore.tres" id="6_pnaso"]
-[ext_resource type="Texture2D" uid="uid://dvqsh7o8c510m" path="res://assets/sprites/dream.png" id="7_adfct"]
+[ext_resource type="Texture2D" uid="uid://bncpayhqbug8q" path="res://assets/particles/circle_smooth.png" id="7_2g4gk"]
+[ext_resource type="Texture2D" uid="uid://7vxbyg8168tm" path="res://assets/particles/glow.png" id="7_e0bu1"]
+[ext_resource type="Shader" path="res://resources/particles/Dream.gdshader" id="8_ma13t"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_30ac0"]
-radius = 18.0
-height = 62.0
+[sub_resource type="Animation" id="Animation_l3etn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.225, 0.225)]
+}
+
+[sub_resource type="Animation" id="Animation_vwf7o"]
+resource_name = "spawn"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.225, 0.225)]
+}
+
+[sub_resource type="Animation" id="Animation_ekrt3"]
+resource_name = "wobble"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.225, 0.225), Vector2(0.25, 0.25), Vector2(0.225, 0.225)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x81fj"]
+_data = {
+"RESET": SubResource("Animation_l3etn"),
+"spawn": SubResource("Animation_vwf7o"),
+"wobble": SubResource("Animation_ekrt3")
+}
+
+[sub_resource type="Curve" id="Curve_krmho"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.103347, 1), 0.0, 0.0, 0, 0, Vector2(0.861506, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_x85if"]
+curve = SubResource("Curve_krmho")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pq7xy"]
+resource_local_to_scene = true
+shader = ExtResource("8_ma13t")
+shader_parameter/direction = Vector3(1, 0, 0)
+shader_parameter/spread = 45.0
+shader_parameter/flatness = 0.0
+shader_parameter/initial_linear_velocity_min = 0.0
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/orbit_velocity_min = 0.0
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/scale_min = 0.1
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/initial_linear_velocity_max = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/orbit_velocity_max = 0.0
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/scale_max = 0.1
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_max = 0.0
+shader_parameter/anim_offset_max = 0.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/emission_sphere_radius = 30.0
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/gravity = Vector3(0, -1e-06, 0)
+shader_parameter/is_going_to_target = false
+shader_parameter/target_location = Vector2(0, 0)
+shader_parameter/acceleration = 1.5
+shader_parameter/scale_texture = SubResource("CurveTexture_x85if")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sas7n"]
+radius = 31.0161
+
+[sub_resource type="Animation" id="Animation_0j8xa"]
+resource_name = "despawn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DreamSprite:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DreamSprite:process_material:shader_parameter/acceleration")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [10.0]
+}
+
+[sub_resource type="Animation" id="Animation_t7v62"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DreamSprite:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DreamSprite:process_material:shader_parameter/acceleration")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q2tq1"]
+_data = {
+"RESET": SubResource("Animation_t7v62"),
+"despawn": SubResource("Animation_0j8xa")
+}
 
 [node name="Dream" type="Node2D"]
 script = ExtResource("1_1foxc")
 powers = Array[Resource("res://resources/powers/PowerResource.gd")]([ExtResource("2_8xx12"), ExtResource("3_qqta3"), ExtResource("4_vtpcr"), ExtResource("5_mil12"), ExtResource("6_pnaso")])
 
-[node name="Dream" type="Sprite2D" parent="."]
-texture = ExtResource("7_adfct")
+[node name="Glow" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.225, 0.225)
+texture = ExtResource("7_e0bu1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Glow"]
+autoplay = "spawn"
+libraries = {
+"": SubResource("AnimationLibrary_x81fj")
+}
+
+[node name="DreamSprite" type="GPUParticles2D" parent="."]
+amount = 300
+process_material = SubResource("ShaderMaterial_pq7xy")
+texture = ExtResource("7_2g4gk")
+lifetime = 4.0
 
 [node name="CollectArea" type="Area2D" parent="."]
 collision_layer = 512
@@ -25,18 +240,14 @@ collision_mask = 512
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
-position = Vector2(-1, -14)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_30ac0")
+shape = SubResource("CircleShape2D_sas7n")
 
 [node name="CollectTimer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
 
-[node name="Label" type="Label" parent="."]
-offset_left = -27.0
-offset_top = -27.0
-offset_right = 32.0
-offset_bottom = -1.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "s"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q2tq1")
+}

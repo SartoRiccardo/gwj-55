@@ -28,6 +28,10 @@ func _ready():
 	
 	for state in $States.get_children():
 		state.init(self)
+	
+	target = Utils.get_player()
+	if target and target.is_invisible():
+		current_state = states[State.WANDER]
 	current_state.enter()
 	
 	$HurtBox.area_entered.connect(func(a2d : Area2D):

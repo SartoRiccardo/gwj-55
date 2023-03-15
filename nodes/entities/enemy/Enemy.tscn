@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dp77u0y7jlygp"]
+[gd_scene load_steps=9 format=3 uid="uid://drxfnjx7u7egh"]
 
 [ext_resource type="Script" path="res://nodes/entities/enemy/Enemy.gd" id="1_qs5lu"]
 [ext_resource type="Texture2D" uid="uid://ctijtutpusd3w" path="res://assets/sprites/nightmare.png" id="2_trn7o"]

@@ -23,9 +23,11 @@ func update(delta : float) -> Player.State:
 	if Input.is_action_pressed("eat"):
 		var dream_areas : Array[Area2D] = parent.get_node("EatRange").get_overlapping_areas()
 		if dream_areas.size() > 0:
-			var dream : Dream = dream_areas[0].get_parent()
-			parent.current_dream = dream
-			return Player.State.EAT
+			for d in dream_areas:
+				var dream : Dream = d.get_parent()
+				if dream.edible:
+					parent.current_dream = dream
+					return Player.State.EAT
 	
 	if Input.is_action_pressed("action") and parent.current_power:
 		if parent.current_power.charge_duration > 0:

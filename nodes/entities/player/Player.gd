@@ -147,5 +147,9 @@ func _go_visible() -> void:
 	EventBus.player_visible.emit()
 
 
+func is_invisible() -> bool:
+	return $Invisibility.time_left > 0
+
+
 func _on_game_finished() -> void:
 	$States/Controllable.end = true
