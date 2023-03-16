@@ -4,7 +4,8 @@ class_name GameUI
 
 @onready var label_time = $Margin1/VBox1/HBox1/VBox1/HBox2/TimeLeft
 @onready var label_points = $Margin1/VBox1/HBox1/VBox1/HBox1/Points
-@onready var label_power = $Margin1/VBox1/HBox2/Power
+@onready var icon_power = $Margin1/VBox1/HBox2/PowerPanel/Power
+@onready var power_desc = $Margin1/VBox1/HBox2/PowerDescription/DescContainer/Margin1/Description
 
 const TIME_TOTAL := 7 * 60
 
@@ -25,8 +26,10 @@ func set_dreams(dreams : int) -> void:
 
 
 func set_power(power : PowerResource) -> void:
-	label_power.set_text(power.full_name)
+	icon_power.set_texture(power.texture)
+	power_desc.set_text(power.power_description)
+	$Margin1/VBox1/HBox2.show()
 
 
 func remove_power() -> void:
-	label_power.set_text("")
+	$Margin1/VBox1/HBox2.hide()

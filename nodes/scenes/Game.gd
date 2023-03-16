@@ -16,7 +16,7 @@ func _ready():
 	start_game()
 
 
-func _process(delta):
+func _process(_delta):
 	$GameUI.set_time_left($Timer.time_left/GAME_LENGTH)
 
 
@@ -34,7 +34,7 @@ func _on_dream_earned() -> void:
 
 
 func _on_dream_stolen() -> void:
-	dreams = min(0, dreams-3)
+	dreams = max(0, dreams-3)
 	$GameUI.set_dreams(dreams)
 
 

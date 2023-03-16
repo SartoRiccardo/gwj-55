@@ -2,7 +2,7 @@ extends BaseState
 
 
 func enter() -> void:
-	parent.get_node("AnimatedSprite2D").play("hurt")
+	parent.get_node("Sprite").play("hurt")
 	parent.get_node("AnimationPlayer").play("invulnerable")
 
 

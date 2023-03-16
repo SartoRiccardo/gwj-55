@@ -29,10 +29,6 @@ func _ready():
 	)
 
 
-func _process(delta):
-	pass
-
-
 func _select_power() -> void:
 	if Utils.rng.randf() > POWER_SPAWN_CHANCE:
 		return
@@ -77,7 +73,7 @@ func die(natural := true) -> void:
 		enemy_root.add_child(spawner)
 
 
-func set_starting_point(point : Vector2) -> void:
+func set_starting_point(_point : Vector2) -> void:
 	pass
 
 

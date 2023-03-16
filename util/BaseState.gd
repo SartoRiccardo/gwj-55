@@ -21,5 +21,5 @@ func update(_delta : float) -> Player.State:
 	return Player.State.NO_CHANGE
 
 
-func _on_hurt(enemy : Enemy) -> Player.State:
+func _on_hurt(_enemy : Enemy) -> Player.State:
 	return Player.State.NO_CHANGE

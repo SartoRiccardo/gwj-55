@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="PowerResource" load_steps=2 format=3 uid="uid://ca78kla48p03b"]
+[gd_resource type="Resource" script_class="PowerResource" load_steps=3 format=3 uid="uid://ca78kla48p03b"]
 
 [ext_resource type="Script" path="res://resources/powers/PowerResource.gd" id="1_wqg6p"]
+[ext_resource type="Texture2D" uid="uid://dvsf1q5jarmex" path="res://assets/ui/power_spore.png" id="2_4sgds"]
 
 [resource]
 script = ExtResource("1_wqg6p")
@@ -10,3 +11,4 @@ effect_duration = 3.0
 spawn_chance = 0.15
 full_name = "Spore"
 power_description = "Puts nearby enemies and people immediately to sleep."
+texture = ExtResource("2_4sgds")

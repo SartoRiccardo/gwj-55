@@ -47,7 +47,7 @@ func _update_velocity(delta : float) -> void:
 
 
 func _update_sprite() -> void:
-	var sprite : AnimatedSprite2D = parent.get_node("AnimatedSprite2D")
+	var sprite : AnimationComposite = parent.get_node("Sprite")
 	match parent.direction:
 		Vector2.ZERO:
 			sprite.play("idle")

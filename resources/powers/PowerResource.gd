@@ -9,3 +9,4 @@ class_name PowerResource
 @export_group("Power Info")
 @export var full_name := ""
 @export_multiline var power_description := ""
+@export var texture : Texture = null

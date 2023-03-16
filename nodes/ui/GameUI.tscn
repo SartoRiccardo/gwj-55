@@ -1,6 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://drbu3xe1h30he"]
+[gd_scene load_steps=8 format=3 uid="uid://drbu3xe1h30he"]
 
 [ext_resource type="Script" path="res://nodes/ui/GameUI.gd" id="1_53dua"]
+[ext_resource type="Texture2D" uid="uid://ba7yw8ldjfw4s" path="res://assets/ui/power_explosion.png" id="2_fgp6c"]
+[ext_resource type="Theme" uid="uid://bp1nopv7lfjhi" path="res://resources/ui/main_theme.tres" id="2_s3uvw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kydh4"]
+bg_color = Color(0, 0, 0, 0.466667)
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+
+[sub_resource type="Animation" id="Animation_kruo3"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_f53or"]
+resource_name = "get_power"
+length = 0.3
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8trho"]
+_data = {
+"RESET": SubResource("Animation_kruo3"),
+"get_power": SubResource("Animation_f53or")
+}
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_53dua")
@@ -11,7 +31,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_top = 100
+theme = ExtResource("2_s3uvw")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBox1" type="VBoxContainer" parent="Margin1"]
 layout_mode = 2
@@ -46,5 +70,53 @@ text = "Pause"
 layout_mode = 2
 size_flags_vertical = 10
 
-[node name="Power" type="Label" parent="Margin1/VBox1/HBox2"]
+[node name="PowerPanel" type="PanelContainer" parent="Margin1/VBox1/HBox2"]
+z_index = 1
 layout_mode = 2
+
+[node name="Control" type="Control" parent="Margin1/VBox1/HBox2/PowerPanel"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="Power" type="TextureRect" parent="Margin1/VBox1/HBox2/PowerPanel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("2_fgp6c")
+
+[node name="PowerDescription" type="MarginContainer" parent="Margin1/VBox1/HBox2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = -20
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="DescContainer" type="PanelContainer" parent="Margin1/VBox1/HBox2/PowerDescription"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kydh4")
+
+[node name="Margin1" type="MarginContainer" parent="Margin1/VBox1/HBox2/PowerDescription/DescContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 20
+
+[node name="Description" type="Label" parent="Margin1/VBox1/HBox2/PowerDescription/DescContainer/Margin1"]
+layout_mode = 2
+text = "A powerful power that lets you win."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8trho")
+}

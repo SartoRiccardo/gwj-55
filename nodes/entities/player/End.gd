@@ -5,7 +5,7 @@ class_name PlayerEnd
 func enter() -> void:
 	parent.get_node("HitBox").set_monitorable(false)
 	parent.get_node("HurtBox").set_monitoring(false)
-	parent.get_node("AnimatedSprite2D").play("idle")
+	parent.get_node("Sprite").play("idle")
 
 
 func exit() -> void:

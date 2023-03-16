@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="PowerResource" load_steps=2 format=3 uid="uid://daowdij1cobxj"]
+[gd_resource type="Resource" script_class="PowerResource" load_steps=3 format=3 uid="uid://daowdij1cobxj"]
 
 [ext_resource type="Script" path="res://resources/powers/PowerResource.gd" id="1_0nual"]
+[ext_resource type="Texture2D" uid="uid://go5e2i5n0r1v" path="res://assets/ui/power_dash.png" id="2_8mr0x"]
 
 [resource]
 script = ExtResource("1_0nual")
@@ -10,3 +11,4 @@ effect_duration = 0.3
 spawn_chance = 0.15
 full_name = "Dash"
 power_description = "Dashes incredibly fast, destroying enemies it hits"
+texture = ExtResource("2_8mr0x")

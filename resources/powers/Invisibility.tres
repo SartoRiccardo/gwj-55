@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="PowerResource" load_steps=2 format=3 uid="uid://dre2n0rsqlp2p"]
+[gd_resource type="Resource" script_class="PowerResource" load_steps=3 format=3 uid="uid://dre2n0rsqlp2p"]
 
 [ext_resource type="Script" path="res://resources/powers/PowerResource.gd" id="1_cne7h"]
+[ext_resource type="Texture2D" uid="uid://bpc3smwqked7b" path="res://assets/ui/power_invisibility.png" id="2_4xbwl"]
 
 [resource]
 script = ExtResource("1_cne7h")
@@ -10,3 +11,4 @@ effect_duration = 7.0
 spawn_chance = 0.2
 full_name = "Invisibility"
 power_description = "Go undetected for a few seconds, but enemies can still hit you!"
+texture = ExtResource("2_4xbwl")

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="PowerResource" load_steps=2 format=3 uid="uid://ddtwfnjy35y53"]
+[gd_resource type="Resource" script_class="PowerResource" load_steps=3 format=3 uid="uid://ddtwfnjy35y53"]
 
 [ext_resource type="Script" path="res://resources/powers/PowerResource.gd" id="1_ibkok"]
+[ext_resource type="Texture2D" uid="uid://ba7yw8ldjfw4s" path="res://assets/ui/power_explosion.png" id="2_3fta7"]
 
 [resource]
 script = ExtResource("1_ibkok")
@@ -10,3 +11,4 @@ effect_duration = 0.5
 spawn_chance = 0.4
 full_name = "Explode"
 power_description = "Creates a big explosion, destroying enemies but waking up people"
+texture = ExtResource("2_3fta7")

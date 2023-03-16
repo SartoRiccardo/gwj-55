@@ -30,7 +30,7 @@ func _ready():
 	$SpawnTimer.timeout.connect(spawn_dream)
 
 
-func _process(delta):
+func _process(_delta):
 	_start_dream_spawn()
 
 

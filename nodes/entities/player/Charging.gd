@@ -13,7 +13,7 @@ func init(parent_node : Player) -> void:
 
 func enter() -> void:
 	stage = 0
-	parent.get_node("AnimatedSprite2D").play("charge_%s" % stage)
+	parent.get_node("Sprite").play("charge_%s" % stage)
 	$Timer.start(parent.current_power.charge_duration/3.0)
 
 
@@ -33,7 +33,7 @@ func update(delta : float) -> Player.State:
 func on_charge_stage_change() -> void:
 	stage += 1
 	if stage < CHARGE_STAGES:
-		parent.get_node("AnimatedSprite2D").play("charge_%s" % stage)
+		parent.get_node("Sprite").play("charge_%s" % stage)
 		$Timer.start(parent.current_power.charge_duration/3.0)
 	else:
 		parent.use_power()

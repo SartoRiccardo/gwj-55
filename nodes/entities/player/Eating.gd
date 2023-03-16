@@ -10,7 +10,7 @@ func enter() -> void:
 		return
 	parent.current_dream.start_getting_eaten()
 	parent.current_dream.eaten.connect(_eat_dream)
-	parent.get_node("AnimatedSprite2D").play("eat")
+	parent.get_node("Sprite").play("eat")
 
 
 func exit() -> void:
