@@ -2,7 +2,7 @@ extends Node2D
 class_name Enemy
 
 
-enum State { CHASE, WANDER, ASLEEP, NO_CHANGE }
+enum State { CHASE, WANDER, ASLEEP, DYING, NO_CHANGE }
 
 # The max speed the enemies can go at will be randomized
 const MIN_MAX_SPEED := 75.0
@@ -18,6 +18,7 @@ var velocity := Vector2.ZERO
 	State.CHASE: $States/Chase,
 	State.ASLEEP: $States/Asleep,
 	State.WANDER: $States/Wander,
+	State.DYING: $States/Dying,
 }
 @onready var current_state : EnemyState = states[State.CHASE]
 
@@ -39,7 +40,7 @@ func _ready():
 		if collider is Spore:
 			_change_state.call_deferred(State.ASLEEP)
 		else:
-			die()
+			self.die.call_deferred()
 	)
 	EventBus.player_invisible.connect(func():
 		self._change_state.call_deferred(State.WANDER)
@@ -67,8 +68,17 @@ func _change_state(new_state : State) -> void:
 	current_state = state
 
 
+func adjust_sprite_flip(direction : Vector2) -> void:
+	$Sprite.set_flip_h(sign(direction.x) == sign(Vector2.RIGHT.x))
+
+
 func die() -> void:
-	queue_free()
+	$Sprite.play("explode")
+	$HitBox.set_monitorable(false)
+	$HurtBox.set_monitoring(false)
+	_change_state(State.DYING)
+	await $Sprite/Body.animation_finished
+	$AnimationPlayer.play("despawn")
 
 
 func wake_up() -> void:
@@ -77,4 +87,9 @@ func wake_up() -> void:
 
 func _on_successful_attack() -> void:
 	EventBus.dreams_stolen.emit()
-	queue_free()
+	$Sprite.play("bite")
+	$HitBox.set_deferred("monitorable", false)
+	$HurtBox.set_deferred("monitoring", false)
+	_change_state(State.DYING)
+	await $Sprite/Body.animation_finished
+	$AnimationPlayer.play("despawn")

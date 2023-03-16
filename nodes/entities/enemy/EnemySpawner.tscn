@@ -1,74 +1,98 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=7 format=3 uid="uid://c7kr12dvfcam8"]
 
 [ext_resource type="Script" path="res://nodes/entities/enemy/EnemySpawner.gd" id="1_5gjcr"]
-[ext_resource type="Texture2D" uid="uid://ctijtutpusd3w" path="res://assets/sprites/nightmare.png" id="2_ohc41"]
+[ext_resource type="Texture2D" uid="uid://dyjsm8qiulllc" path="res://assets/sprites/enemy/spawn.png" id="2_e2oxn"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iwybb"]
-atlas = ExtResource("2_ohc41")
-region = Rect2(35, 2, 29, 28)
+[sub_resource type="Animation" id="Animation_qh1k1"]
+resource_name = "spawn"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
-[sub_resource type="Animation" id="Animation_kruv4"]
+[sub_resource type="Animation" id="Animation_361hf"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/path = NodePath("CanvasGroup:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_4v4ft"]
-resource_name = "spawn"
-length = 3.1
-tracks/0/type = "method"
+[sub_resource type="Animation" id="Animation_6mjhc"]
+resource_name = "despawn"
+length = 0.3
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath("CanvasGroup:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(3, 3.1),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"spawn_enemy"
-}, {
 "args": [],
 "method": &"queue_free"
 }]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_v336a"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fkxfo"]
 _data = {
-"RESET": SubResource("Animation_kruv4"),
-"spawn": SubResource("Animation_4v4ft")
+"RESET": SubResource("Animation_361hf"),
+"despawn": SubResource("Animation_6mjhc"),
+"spawn": SubResource("Animation_qh1k1")
 }
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_5gjcr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_iwybb")
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+
+[node name="Spiral1" type="Sprite2D" parent="CanvasGroup"]
+texture = ExtResource("2_e2oxn")
+
+[node name="Spiral2" type="Sprite2D" parent="CanvasGroup"]
+modulate = Color(0.415686, 0.415686, 0.415686, 1)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_e2oxn")
+flip_h = true
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "spawn"
 libraries = {
-"": SubResource("AnimationLibrary_v336a")
+"": SubResource("AnimationLibrary_fkxfo")
 }

@@ -13,6 +13,7 @@ func init(parent_node : Enemy) -> void:
 
 
 func enter() -> void:
+	parent.get_node("Sprite").play("wander")
 	$Timer.start(Utils.rng.randf_range(MIN_IDLE_TIME, MAX_IDLE_TIME))
 
 
@@ -29,6 +30,7 @@ func update(delta : float) -> Enemy.State:
 func start_wander() -> void:
 	var angle := Utils.rng.randf_range(0, PI*2)
 	var direction := Vector2(sin(angle), cos(angle))
+	parent.adjust_sprite_flip(direction)
 	parent.velocity = direction * IDLE_SPEED
 	
 	$Timer.start(Utils.rng.randf_range(MIN_IDLE_TIME, MAX_IDLE_TIME))

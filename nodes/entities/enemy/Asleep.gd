@@ -12,6 +12,7 @@ func init(parent_node : Enemy) -> void:
 
 
 func enter() -> void:
+	parent.get_node("Sprite").play("asleep")
 	$SleepTimer.start(Utils.rng.randf_range(MIN_SLEEP_TIME, MAX_SLEEP_TIME))
 	parent.get_node("HitBox").set_monitorable(false)
 

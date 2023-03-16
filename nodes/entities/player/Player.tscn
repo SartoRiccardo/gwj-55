@@ -401,11 +401,11 @@ autoplay = "idle"
 [node name="Wobble" type="AnimatedSprite2D" parent="Sprite"]
 sprite_frames = SubResource("SpriteFrames_w2jn1")
 autoplay = "default"
-frame_progress = 0.0699705
+frame_progress = 0.960715
 
 [node name="Face" type="AnimatedSprite2D" parent="Sprite"]
 sprite_frames = SubResource("SpriteFrames_5ctpw")
-animation = &"charge_0"
+animation = &"eat"
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -445,6 +445,7 @@ script = ExtResource("3_dwas1")
 
 [node name="Eating" type="Node" parent="States"]
 script = ExtResource("4_yktyq")
+eat_target = Vector2(-10, 20)
 
 [node name="Stagger" type="Node" parent="States"]
 script = ExtResource("5_obsfg")

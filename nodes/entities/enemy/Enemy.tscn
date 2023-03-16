@@ -1,14 +1,194 @@
-[gd_scene load_steps=9 format=3 uid="uid://drxfnjx7u7egh"]
+[gd_scene load_steps=46 format=3 uid="uid://drxfnjx7u7egh"]
 
 [ext_resource type="Script" path="res://nodes/entities/enemy/Enemy.gd" id="1_qs5lu"]
-[ext_resource type="Texture2D" uid="uid://ctijtutpusd3w" path="res://assets/sprites/nightmare.png" id="2_trn7o"]
 [ext_resource type="Script" path="res://nodes/entities/enemy/Chase.gd" id="3_8823f"]
+[ext_resource type="Script" path="res://nodes/entities/player/AnimationComposite.gd" id="3_ksqh4"]
+[ext_resource type="Texture2D" uid="uid://cpg8llxvjnuf1" path="res://assets/sprites/enemy/body-asleep0.png" id="4_h1d4a"]
+[ext_resource type="Texture2D" uid="uid://jpnmws24alo6" path="res://assets/sprites/enemy/body-default0.png" id="4_ht58t"]
 [ext_resource type="Script" path="res://nodes/entities/enemy/Asleep.gd" id="4_xj7yd"]
+[ext_resource type="Texture2D" uid="uid://dqem3sxvog63r" path="res://assets/sprites/enemy/body-default1.png" id="5_kqlcb"]
+[ext_resource type="Texture2D" uid="uid://bhbhqmkjxxcgj" path="res://assets/sprites/enemy/body-asleep1.png" id="5_tgayc"]
 [ext_resource type="Script" path="res://nodes/entities/enemy/Wander.gd" id="5_yt0bg"]
+[ext_resource type="Texture2D" uid="uid://dupilj63nv70a" path="res://assets/sprites/enemy/body-asleep2.png" id="6_3op1i"]
+[ext_resource type="Texture2D" uid="uid://dowi08vp83kj2" path="res://assets/sprites/enemy/body-default2.png" id="6_uk7s6"]
+[ext_resource type="Texture2D" uid="uid://3qmikj6r4j3g" path="res://assets/sprites/enemy/face-default0.png" id="7_5pojt"]
+[ext_resource type="Texture2D" uid="uid://b844o3ymx45q6" path="res://assets/sprites/enemy/body-bite0.png" id="8_0f35o"]
+[ext_resource type="Texture2D" uid="uid://ty54bay2wog4" path="res://assets/sprites/enemy/face-default1.png" id="8_7ofln"]
+[ext_resource type="Texture2D" uid="uid://7xauddt7fqfl" path="res://assets/sprites/enemy/body-bite1.png" id="9_8vj5g"]
+[ext_resource type="Texture2D" uid="uid://bgdkwxsyjykvc" path="res://assets/sprites/enemy/body-explode-0.png" id="10_7gmun"]
+[ext_resource type="Texture2D" uid="uid://dnp323524xwmo" path="res://assets/sprites/enemy/body-bite2.png" id="10_lgtl4"]
+[ext_resource type="Texture2D" uid="uid://8u6k6yv53ilr" path="res://assets/sprites/enemy/face-asleep1.png" id="10_oxs8a"]
+[ext_resource type="Texture2D" uid="uid://cijqejsx5wsg4" path="res://assets/sprites/enemy/body-wander0.png" id="10_pbu4n"]
+[ext_resource type="Texture2D" uid="uid://b0i7b4e2xg5kk" path="res://assets/sprites/enemy/body-explode-1.png" id="11_8ydkc"]
+[ext_resource type="Texture2D" uid="uid://crixtpcjsu22g" path="res://assets/sprites/enemy/body-bite3.png" id="11_bu1r6"]
+[ext_resource type="Texture2D" uid="uid://o4y41txtxxxu" path="res://assets/sprites/enemy/body-wander2.png" id="11_to2u2"]
+[ext_resource type="Texture2D" uid="uid://bc4h17oihri2l" path="res://assets/sprites/enemy/body-explode-2.png" id="12_gcqyy"]
+[ext_resource type="Texture2D" uid="uid://b4we3uvygnkqo" path="res://assets/sprites/enemy/body-wander1.png" id="12_ug45k"]
+[ext_resource type="Texture2D" uid="uid://7jpnhvixxfia" path="res://assets/sprites/enemy/body-bite4.png" id="12_vve21"]
+[ext_resource type="Texture2D" uid="uid://caheb0g4cjqbl" path="res://assets/sprites/enemy/body-explode-3.png" id="13_bte5y"]
+[ext_resource type="Texture2D" uid="uid://ddkab421cs0gi" path="res://assets/sprites/enemy/body-explode-4.png" id="14_0f4kr"]
+[ext_resource type="Texture2D" uid="uid://b6ofm0j2v1g7g" path="res://assets/sprites/enemy/body-explode-5.png" id="15_udr0m"]
+[ext_resource type="Texture2D" uid="uid://4v31okyqitl4" path="res://assets/sprites/enemy/face-wander0.png" id="16_0ytrh"]
+[ext_resource type="Texture2D" uid="uid://ngw7arrenojs" path="res://assets/sprites/enemy/body-explode-6.png" id="16_4l4t2"]
+[ext_resource type="Texture2D" uid="uid://ckqyhtwd5elid" path="res://assets/sprites/enemy/body-explode-7.png" id="17_qtdbh"]
+[ext_resource type="Texture2D" uid="uid://c2twnnxgy14w" path="res://assets/sprites/enemy/body-explode-8.png" id="18_no3k2"]
+[ext_resource type="Texture2D" uid="uid://b40aku8u6nou6" path="res://assets/sprites/wobble/blank.png" id="19_rpt4r"]
+[ext_resource type="Texture2D" uid="uid://bauul0uoetmqr" path="res://assets/sprites/enemy/face-explode0.png" id="26_jvbfa"]
+[ext_resource type="Texture2D" uid="uid://01xv5iwqvctr" path="res://assets/sprites/enemy/face-bite0.png" id="28_lo33f"]
+[ext_resource type="Texture2D" uid="uid://6v07fnr8hwgg" path="res://assets/sprites/enemy/face-bite1.png" id="29_33gbc"]
+[ext_resource type="Script" path="res://nodes/entities/enemy/Dying.gd" id="30_cb0vq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q2bwy"]
-atlas = ExtResource("2_trn7o")
-region = Rect2(0, 0, 32, 30)
+[sub_resource type="SpriteFrames" id="SpriteFrames_0nllv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_h1d4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tgayc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3op1i")
+}],
+"loop": true,
+"name": &"asleep",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_0f35o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_8vj5g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lgtl4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bu1r6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_vve21")
+}],
+"loop": false,
+"name": &"bite",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_kqlcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ht58t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_uk7s6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ht58t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_7gmun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8ydkc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_gcqyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_bte5y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_0f4kr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_udr0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_4l4t2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_qtdbh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_no3k2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_rpt4r")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_pbu4n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_to2u2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ug45k")
+}],
+"loop": true,
+"name": &"wander",
+"speed": 11.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8itfj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_oxs8a")
+}],
+"loop": true,
+"name": &"asleep",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_lo33f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_33gbc")
+}],
+"loop": false,
+"name": &"bite",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_5pojt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7ofln")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_jvbfa")
+}],
+"loop": true,
+"name": &"explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_0ytrh")
+}],
+"loop": true,
+"name": &"wander",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xjcvt"]
 radius = 13.0
@@ -16,12 +196,104 @@ radius = 13.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_xhg35"]
 radius = 21.0
 
+[sub_resource type="Animation" id="Animation_2ra0h"]
+resource_name = "despawn"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_qxqii"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_chgnl"]
+resource_name = "spawn"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fbk1e"]
+_data = {
+"RESET": SubResource("Animation_qxqii"),
+"despawn": SubResource("Animation_2ra0h"),
+"spawn": SubResource("Animation_chgnl")
+}
+
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_qs5lu")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -1)
-texture = SubResource("AtlasTexture_q2bwy")
+[node name="Sprite" type="CanvasGroup" parent="."]
+position = Vector2(2, -1)
+script = ExtResource("3_ksqh4")
+
+[node name="Body" type="AnimatedSprite2D" parent="Sprite"]
+sprite_frames = SubResource("SpriteFrames_0nllv")
+animation = &"bite"
+autoplay = "default"
+
+[node name="Face" type="AnimatedSprite2D" parent="Sprite"]
+sprite_frames = SubResource("SpriteFrames_8itfj")
+animation = &"bite"
+autoplay = "default"
+frame = 1
+frame_progress = 1.0
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 256
@@ -55,3 +327,12 @@ one_shot = true
 script = ExtResource("5_yt0bg")
 
 [node name="Timer" type="Timer" parent="States/Wander"]
+
+[node name="Dying" type="Node" parent="States"]
+script = ExtResource("30_cb0vq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "spawn"
+libraries = {
+"": SubResource("AnimationLibrary_fbk1e")
+}

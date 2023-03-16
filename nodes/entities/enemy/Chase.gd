@@ -3,7 +3,7 @@ class_name EnemyChase
 
 
 func enter() -> void:
-	pass
+	parent.get_node("Sprite").play("default")
 
 
 func exit() -> void:
@@ -19,6 +19,7 @@ func update(delta : float) -> Enemy.State:
 	var direction := (target.global_position - parent.global_position).normalized()
 	var target_velocity := direction * parent.max_speed
 	parent.velocity = parent.velocity.move_toward(target_velocity, parent.ACCELERATION*delta)
+	parent.adjust_sprite_flip(direction)
 	
 	return Enemy.State.NO_CHANGE
 
