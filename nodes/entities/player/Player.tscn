@@ -401,7 +401,7 @@ autoplay = "idle"
 [node name="Wobble" type="AnimatedSprite2D" parent="Sprite"]
 sprite_frames = SubResource("SpriteFrames_w2jn1")
 autoplay = "default"
-frame_progress = 0.960715
+frame_progress = 0.000790974
 
 [node name="Face" type="AnimatedSprite2D" parent="Sprite"]
 sprite_frames = SubResource("SpriteFrames_5ctpw")

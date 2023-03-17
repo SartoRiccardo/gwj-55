@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @export var invulnerable := false
+@export var current_power : PowerResource = null
 
 enum State { CONTROLLABLE, EAT, STAGGER, DASH, CHARGE, NO_CHANGE, END }
 
@@ -15,7 +16,6 @@ var inputs : Array[String]= []
 var direction := Vector2.ZERO
 #var velocity := Vector2.ZERO
 var current_dream : Dream = null
-var current_power : PowerResource = null
 var power_callbacks := {
 	"explosion": func(): _spawn_effect(SCENE_EXPOLOSION),
 	"dash": _start_dash,

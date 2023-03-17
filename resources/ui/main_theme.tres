@@ -1,4 +1,8 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bp1nopv7lfjhi"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cpncpq0fugdty"]
+
+[ext_resource type="Texture2D" uid="uid://cde4y6y34owkg" path="res://assets/ui/panel-3.png" id="1_78j5n"]
+[ext_resource type="Texture2D" uid="uid://cl6v1y78x6hrb" path="res://assets/ui/panel-4.png" id="2_56dcy"]
+[ext_resource type="FontFile" uid="uid://bwj0ljmudf2k6" path="res://assets/ui/TakeCoffee.ttf" id="3_81fyp"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ulgdj"]
 load_path = "res://.godot/imported/panel-1.png-60e3c9d84d9db8eeeef0cc726342f75f.ctex"
@@ -7,11 +11,15 @@ load_path = "res://.godot/imported/panel-1.png-60e3c9d84d9db8eeeef0cc726342f75f.
 load_path = "res://.godot/imported/panel-2.png-7413180991c2e2071087856f1d4b8900.ctex"
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_nr08h"]
-frames = 2
+frames = 4
 frame_0/texture = SubResource("CompressedTexture2D_ulgdj")
-frame_0/duration = 0.04
+frame_0/duration = 0.07
 frame_1/texture = SubResource("CompressedTexture2D_hftm7")
-frame_1/duration = 0.04
+frame_1/duration = 0.07
+frame_2/texture = ExtResource("1_78j5n")
+frame_2/duration = 0.07
+frame_3/texture = ExtResource("2_56dcy")
+frame_3/duration = 0.07
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4hxd8"]
 texture = SubResource("AnimatedTexture_nr08h")
@@ -23,4 +31,6 @@ axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
 [resource]
+default_font = ExtResource("3_81fyp")
+default_font_size = 20
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_4hxd8")

@@ -1,16 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxquyaesa6qm0"]
+[gd_scene load_steps=6 format=3 uid="uid://dnu7bsno5tswa"]
 
 [ext_resource type="Script" path="res://nodes/entities/House.gd" id="1_pkdr5"]
 [ext_resource type="Script" path="res://resources/houses/HouseResource.gd" id="2_b4twl"]
-[ext_resource type="Texture2D" uid="uid://rytrkoli8f3d" path="res://assets/sprites/house.png" id="3_5unfj"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hdpfw"]
-load_path = "res://.godot/imported/house.png-0ab89cb2fa70a26cff8a1e0084fe0f23.ctex"
+[ext_resource type="Texture2D" uid="uid://rytrkoli8f3d" path="res://assets/sprites/houses/house0.png" id="2_vuagh"]
 
 [sub_resource type="Resource" id="Resource_caxgl"]
 script = ExtResource("2_b4twl")
 max_dreams = 3
-house_texture = SubResource("CompressedTexture2D_hdpfw")
+house_texture = ExtResource("2_vuagh")
 house_size = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqp7u"]
@@ -20,8 +17,9 @@ size = Vector2(59, 61)
 script = ExtResource("1_pkdr5")
 house_data = SubResource("Resource_caxgl")
 
-[node name="House" type="Sprite2D" parent="."]
-texture = ExtResource("3_5unfj")
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-15, -87)
+texture = ExtResource("2_vuagh")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
@@ -29,13 +27,10 @@ one_shot = true
 [node name="DreamPositions" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="DreamPositions"]
-position = Vector2(-71, -37)
+position = Vector2(-137, -121)
 
 [node name="Marker2D2" type="Marker2D" parent="DreamPositions"]
-position = Vector2(-1, -87)
-
-[node name="Marker2D3" type="Marker2D" parent="DreamPositions"]
-position = Vector2(68, -39)
+position = Vector2(39, -104)
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 1024

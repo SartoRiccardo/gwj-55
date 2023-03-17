@@ -6,6 +6,7 @@ class_name Game
 const NIGHT_SPELL_INCREASE := 30.0
 
 var dreams : int = 0
+var animating_time := false
 
 
 func _ready():
@@ -17,7 +18,8 @@ func _ready():
 
 
 func _process(_delta):
-	$GameUI.set_time_left($Timer.time_left/GAME_LENGTH)
+	if not animating_time:
+		$GameUI.set_time_left($Timer.time_left/GAME_LENGTH)
 
 
 func start_game() -> void:
@@ -39,4 +41,10 @@ func _on_dream_stolen() -> void:
 
 
 func _extend_night() -> void:
-	$Timer.start(min(GAME_LENGTH, $Timer.time_left + NIGHT_SPELL_INCREASE))
+	animating_time = true
+	var new_time : float = min(GAME_LENGTH, $Timer.time_left + NIGHT_SPELL_INCREASE)
+	$GameUI.increase_time(new_time/GAME_LENGTH)
+	
+	await $GameUI.time_animation_finished
+	$Timer.start(new_time)
+	animating_time = false

@@ -1,8 +1,153 @@
-[gd_scene load_steps=8 format=3 uid="uid://drbu3xe1h30he"]
+[gd_scene load_steps=20 format=3 uid="uid://drbu3xe1h30he"]
 
 [ext_resource type="Script" path="res://nodes/ui/GameUI.gd" id="1_53dua"]
 [ext_resource type="Texture2D" uid="uid://ba7yw8ldjfw4s" path="res://assets/ui/power_explosion.png" id="2_fgp6c"]
-[ext_resource type="Theme" uid="uid://bp1nopv7lfjhi" path="res://resources/ui/main_theme.tres" id="2_s3uvw"]
+[ext_resource type="Theme" uid="uid://cpncpq0fugdty" path="res://resources/ui/main_theme.tres" id="2_s3uvw"]
+[ext_resource type="Texture2D" uid="uid://ce2e2efth018c" path="res://assets/ui/icon_dreams.png" id="3_soklx"]
+[ext_resource type="Script" path="res://nodes/ui/KeepResizing.gd" id="4_2odql"]
+[ext_resource type="Script" path="res://nodes/ui/CenterPivot.gd" id="4_c0s7u"]
+[ext_resource type="Texture2D" uid="uid://btjclme4yxjep" path="res://assets/ui/icon_clock.png" id="4_sjv87"]
+
+[sub_resource type="Animation" id="Animation_jra0x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Margin1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Margin1/Points:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nwmrv"]
+resource_name = "lose"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Margin1:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Margin1/Points:theme_override_colors/font_color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.7),
+"transitions": PackedFloat32Array(0.333333, 3, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.494118, 0.427451, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uc4xj"]
+resource_name = "gain"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Margin1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c8old"]
+_data = {
+"RESET": SubResource("Animation_jra0x"),
+"gain": SubResource("Animation_uc4xj"),
+"lose": SubResource("Animation_nwmrv")
+}
+
+[sub_resource type="Animation" id="Animation_vp0ir"]
+resource_name = "night_spell"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/MarginContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%TimeLeft:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0.941176, 0.988235, 1), Color(0, 0.941176, 0.988235, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dfj0u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/MarginContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%TimeLeft:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7f6kp"]
+_data = {
+"RESET": SubResource("Animation_dfj0u"),
+"night_spell": SubResource("Animation_vp0ir")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kydh4"]
 bg_color = Color(0, 0, 0, 0.466667)
@@ -11,15 +156,200 @@ corner_radius_bottom_right = 15
 
 [sub_resource type="Animation" id="Animation_kruo3"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Margin1/VBox1/HBox2/PowerPanel/Control/PowerIcon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Margin1/VBox1/HBox2/PowerPanel/Control/PowerIcon:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Margin1/VBox1/HBox2/PowerDescription/Control/DescContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-700, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Margin1/VBox1/HBox2/PowerPanel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Margin1/VBox1/HBox2/PowerDescription/Control/DescContainer:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_f53or"]
 resource_name = "get_power"
-length = 0.3
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Margin1/VBox1/HBox2/PowerPanel/Control/PowerIcon:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Margin1/VBox1/HBox2/PowerPanel/Control/PowerIcon:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Margin1/VBox1/HBox2/PowerDescription/Control/DescContainer:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.63728, 1),
+"update": 0,
+"values": [Vector2(-700, 0), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Margin1/VBox1/HBox2/PowerPanel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Margin1/VBox1/HBox2/PowerDescription/Control/DescContainer:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ory15"]
+resource_name = "use_power"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Margin1/VBox1/HBox2/PowerPanel/Control/PowerIcon:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(3, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Margin1/VBox1/HBox2/PowerPanel/Control/PowerIcon:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Margin1/VBox1/HBox2/PowerDescription/Control/DescContainer:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.63728, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-700, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Margin1/VBox1/HBox2/PowerPanel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Margin1/VBox1/HBox2/PowerDescription/Control/DescContainer:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8trho"]
 _data = {
 "RESET": SubResource("Animation_kruo3"),
-"get_power": SubResource("Animation_f53or")
+"get_power": SubResource("Animation_f53or"),
+"use_power": SubResource("Animation_ory15")
 }
 
 [node name="GameUI" type="CanvasLayer"]
@@ -49,16 +379,79 @@ layout_mode = 2
 [node name="HBox1" type="HBoxContainer" parent="Margin1/VBox1/HBox1/VBox1"]
 layout_mode = 2
 
-[node name="Points" type="Label" parent="Margin1/VBox1/HBox1/VBox1/HBox1"]
+[node name="TextureRect" type="TextureRect" parent="Margin1/VBox1/HBox1/VBox1/HBox1"]
 layout_mode = 2
+texture = ExtResource("3_soklx")
+
+[node name="Control" type="Control" parent="Margin1/VBox1/HBox1/VBox1/HBox1"]
+layout_mode = 2
+
+[node name="Margin1" type="MarginContainer" parent="Margin1/VBox1/HBox1/VBox1/HBox1/Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.5
+offset_right = 40.0
+offset_bottom = 20.5
+grow_vertical = 2
+theme_override_constants/margin_top = 10
+
+[node name="Points" type="Label" parent="Margin1/VBox1/HBox1/VBox1/HBox1/Control/Margin1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 35
 text = "0"
+vertical_alignment = 1
+
+[node name="CenterPivot" type="Node" parent="Margin1/VBox1/HBox1/VBox1/HBox1/Control/Margin1"]
+script = ExtResource("4_c0s7u")
+
+[node name="AnimationPoints" type="AnimationPlayer" parent="Margin1/VBox1/HBox1/VBox1/HBox1"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_c8old")
+}
 
 [node name="HBox2" type="HBoxContainer" parent="Margin1/VBox1/HBox1/VBox1"]
 layout_mode = 2
 
-[node name="TimeLeft" type="Label" parent="Margin1/VBox1/HBox1/VBox1/HBox2"]
+[node name="TextureRect" type="TextureRect" parent="Margin1/VBox1/HBox1/VBox1/HBox2"]
 layout_mode = 2
-text = "3:00"
+texture = ExtResource("4_sjv87")
+
+[node name="Control" type="Control" parent="Margin1/VBox1/HBox1/VBox1/HBox2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Margin1/VBox1/HBox1/VBox1/HBox2/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_top = 8
+
+[node name="TimeLeft" type="Label" parent="Margin1/VBox1/HBox1/VBox1/HBox2/Control/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 35
+text = "03:00"
+vertical_alignment = 1
+
+[node name="CenterPivot" type="Node" parent="Margin1/VBox1/HBox1/VBox1/HBox2/Control/MarginContainer"]
+script = ExtResource("4_c0s7u")
+
+[node name="AnimationTime" type="AnimationPlayer" parent="Margin1/VBox1/HBox1/VBox1/HBox2"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_7f6kp")
+}
 
 [node name="Button" type="Button" parent="Margin1/VBox1/HBox1"]
 layout_mode = 2
@@ -71,6 +464,7 @@ layout_mode = 2
 size_flags_vertical = 10
 
 [node name="PowerPanel" type="PanelContainer" parent="Margin1/VBox1/HBox2"]
+modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 2
 
@@ -78,7 +472,9 @@ layout_mode = 2
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 
-[node name="Power" type="TextureRect" parent="Margin1/VBox1/HBox2/PowerPanel/Control"]
+[node name="PowerIcon" type="TextureRect" parent="Margin1/VBox1/HBox2/PowerPanel/Control"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -101,22 +497,35 @@ theme_override_constants/margin_left = -20
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="DescContainer" type="PanelContainer" parent="Margin1/VBox1/HBox2/PowerDescription"]
+[node name="Control" type="Control" parent="Margin1/VBox1/HBox2/PowerDescription"]
+clip_contents = true
+layout_mode = 2
+
+[node name="DescContainer" type="PanelContainer" parent="Margin1/VBox1/HBox2/PowerDescription/Control"]
 layout_direction = 2
 layout_mode = 2
+offset_left = -700.0
+offset_right = -381.0
+offset_bottom = 70.0
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_kydh4")
+script = ExtResource("4_2odql")
+resize_y = false
 
-[node name="Margin1" type="MarginContainer" parent="Margin1/VBox1/HBox2/PowerDescription/DescContainer"]
+[node name="Margin1" type="MarginContainer" parent="Margin1/VBox1/HBox2/PowerDescription/Control/DescContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_right = 20
 
-[node name="Description" type="Label" parent="Margin1/VBox1/HBox2/PowerDescription/DescContainer/Margin1"]
+[node name="Description" type="Label" parent="Margin1/VBox1/HBox2/PowerDescription/Control/DescContainer/Margin1"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "A powerful power that lets you win."
+text = "Hey hello how is it going?"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPower" type="AnimationPlayer" parent="Margin1/VBox1/HBox2"]
+unique_name_in_owner = true
+root_node = NodePath("../../../..")
 libraries = {
 "": SubResource("AnimationLibrary_8trho")
 }

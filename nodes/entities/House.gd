@@ -2,6 +2,7 @@ extends Node2D
 
 
 @export var house_data : HouseResource
+@export var flipped := false
 
 const MIN_SPAWN_DELAY : float = 3.0
 const MAX_SPAWN_DELAY : float = 5.5
@@ -14,9 +15,13 @@ var dreams : Array[Dream]
 func _ready():
 	if house_data == null:
 		queue_free()
-	$House.set_texture(house_data.house_texture)
+	$Sprite.set_texture(house_data.house_texture)
+	$Sprite.set_flip_h(flipped)
+	if flipped:
+		for marker in $DreamPositions.get_children():
+			marker.position.x *= -1
 	dreams = []
-	for _i in 3:
+	for _i in $DreamPositions.get_child_count():
 		dreams.push_front(null)
 	rng = RandomNumberGenerator.new()
 	

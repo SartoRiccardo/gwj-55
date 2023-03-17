@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HouseResource" load_steps=3 format=3 uid="uid://b5xi5v630wo0f"]
+
+[ext_resource type="Texture2D" uid="uid://rytrkoli8f3d" path="res://assets/sprites/houses/house0.png" id="1_pplb1"]
+[ext_resource type="Script" path="res://resources/houses/HouseResource.gd" id="2_nkn8l"]
+
+[resource]
+script = ExtResource("2_nkn8l")
+max_dreams = 2
+house_texture = ExtResource("1_pplb1")
+house_size = 2
