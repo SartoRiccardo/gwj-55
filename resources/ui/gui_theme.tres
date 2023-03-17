@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ckdc8tfi6avho"]
+
+[ext_resource type="FontFile" uid="uid://bwj0ljmudf2k6" path="res://assets/ui/TakeCoffee.ttf" id="3_fbv0o"]
+
+[resource]
+default_font = ExtResource("3_fbv0o")
+default_font_size = 50
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 6

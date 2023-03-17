@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://d32u4yw1r3ub1"]
+
+[ext_resource type="Theme" uid="uid://ckdc8tfi6avho" path="res://resources/ui/gui_theme.tres" id="1_rwpre"]
+[ext_resource type="Script" path="res://nodes/ui/PauseMenu.gd" id="2_541ea"]
+
+[node name="PauseMenu" type="PanelContainer"]
+custom_minimum_size = Vector2(500, 300)
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_rwpre")
+script = ExtResource("2_541ea")
+
+[node name="Margin1" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+
+[node name="VBox1" type="VBoxContainer" parent="Margin1"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Margin1/VBox1"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="VBox1" type="VBoxContainer" parent="Margin1/VBox1"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 15
+
+[node name="Resume" type="Button" parent="Margin1/VBox1/VBox1"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Resume"
+
+[node name="Menu" type="Button" parent="Margin1/VBox1/VBox1"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Menu"

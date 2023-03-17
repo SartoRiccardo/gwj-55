@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://drbu3xe1h30he"]
+[gd_scene load_steps=21 format=3 uid="uid://drbu3xe1h30he"]
 
 [ext_resource type="Script" path="res://nodes/ui/GameUI.gd" id="1_53dua"]
 [ext_resource type="Texture2D" uid="uid://ba7yw8ldjfw4s" path="res://assets/ui/power_explosion.png" id="2_fgp6c"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://nodes/ui/KeepResizing.gd" id="4_2odql"]
 [ext_resource type="Script" path="res://nodes/ui/CenterPivot.gd" id="4_c0s7u"]
 [ext_resource type="Texture2D" uid="uid://btjclme4yxjep" path="res://assets/ui/icon_clock.png" id="4_sjv87"]
+[ext_resource type="PackedScene" uid="uid://d32u4yw1r3ub1" path="res://nodes/ui/PauseMenu.tscn" id="8_by1bn"]
 
 [sub_resource type="Animation" id="Animation_jra0x"]
 length = 0.001
@@ -353,6 +354,7 @@ _data = {
 }
 
 [node name="GameUI" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_53dua")
 
 [node name="Margin1" type="MarginContainer" parent="."]
@@ -529,3 +531,21 @@ root_node = NodePath("../../../..")
 libraries = {
 "": SubResource("AnimationLibrary_8trho")
 }
+
+[node name="PauseContainer" type="MarginContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PauseContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.243137)
+
+[node name="PauseMenu" parent="PauseContainer" instance=ExtResource("8_by1bn")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

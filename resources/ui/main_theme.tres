@@ -33,4 +33,6 @@ axis_stretch_vertical = 2
 [resource]
 default_font = ExtResource("3_81fyp")
 default_font_size = 20
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 6
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_4hxd8")

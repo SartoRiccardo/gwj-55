@@ -12,16 +12,14 @@ var ingame_time_passed := 400.0
 func _ready() -> void:
 	EventBus.gain_power.connect(set_power)
 	EventBus.lose_power.connect(remove_power)
-	$Margin1/VBox1/HBox1/Button.pressed.connect(func():
-#		points -= 1
-#		set_dreams(points)
-		
-#		%AnimationTime.play("night_spell")
-		
-		self.increase_time(
-			1-(self.ingame_time_passed/self.TIME_TOTAL)+0.1
-		)
-		pass
+	$Margin1/VBox1/HBox1/Button.pressed.connect(func() -> void:
+		$PauseContainer.show()
+		EventBus.game_pause.emit()
+		get_tree().paused = true
+	)
+	EventBus.game_unpause.connect(func() -> void:
+		$PauseContainer.hide()
+		get_tree().paused = false
 	)
 
 

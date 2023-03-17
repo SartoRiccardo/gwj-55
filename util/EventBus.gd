@@ -2,6 +2,8 @@ extends Node
 
 
 signal game_finished
+signal game_pause
+signal game_unpause
 
 signal dreams_stolen
 signal dreams_earned

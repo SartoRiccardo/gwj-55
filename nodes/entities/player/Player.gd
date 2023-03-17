@@ -47,6 +47,7 @@ func _ready():
 	)
 	$Invisibility.timeout.connect(_go_visible)
 	EventBus.game_finished.connect(_on_game_finished)
+	EventBus.game_unpause.connect(func() -> void: check_inputs(true))
 
 
 func _process(delta):
@@ -70,9 +71,17 @@ func _change_state(new_state : Player.State) -> void:
 	current_state = state_node
 
 
-func check_inputs() -> void:
+func check_inputs(reset := false) -> void:
+	if reset:
+		inputs = []
+	
 	var events_to_check : Array[String] = ["go_left", "go_right", "go_down", "go_up"]
 	for event in events_to_check:
+		if reset:
+			if Input.is_action_pressed(event):
+				inputs.push_front(event)
+			continue
+		
 		if Input.is_action_just_released(event) or Input.is_action_just_pressed(event):
 			inputs.erase(event)
 		if Input.is_action_just_pressed(event):
