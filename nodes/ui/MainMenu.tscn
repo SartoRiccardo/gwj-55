@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://caw4aijxyuy2l"]
+
+[ext_resource type="Theme" uid="uid://ckdc8tfi6avho" path="res://resources/ui/gui_theme.tres" id="1_6t5s4"]
+[ext_resource type="Script" path="res://nodes/ui/MainMenu.gd" id="1_7enbc"]
+[ext_resource type="PackedScene" uid="uid://b50oo32ses7o8" path="res://nodes/scenes/Game.tscn" id="2_t50pf"]
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_7enbc")
+scene_game = ExtResource("2_t50pf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6t5s4")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Dream Banquet"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.5
+
+[node name="Start" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Start"
+
+[node name="Credits" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Credits"
+
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Settings"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "Made for Godot Wildjam #55 - Dreams"
+vertical_alignment = 2
